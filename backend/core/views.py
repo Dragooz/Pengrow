@@ -170,6 +170,28 @@ class AppraisalViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         """Create appraisal and associated review for the creator"""
+        # Validate: Check if appraisal already exists for this appraisee/cycle/project
+        cycle = serializer.validated_data['cycle']
+        appraisee = serializer.validated_data['appraisee']
+        project = serializer.validated_data['project']
+
+        if Appraisal.objects.filter(cycle=cycle, appraisee=appraisee, project=project).exists():
+            from rest_framework.exceptions import ValidationError
+            raise ValidationError({
+                'non_field_errors': ['An appraisal already exists for this appraisee in this project and cycle.']
+            })
+
+        # Validate: Creator must be a REPORTER in the project
+        is_reporter = ProjectMembership.objects.filter(
+            project=project,
+            user=self.request.user,
+            role='REPORTER'
+        ).exists()
+
+        if not is_reporter and not self.request.user.is_staff:
+            from rest_framework.exceptions import PermissionDenied
+            raise PermissionDenied('You must be a REPORTER in this project to create appraisals.')
+
         appraisal = serializer.save()
 
         # Create AppraisalReview for the creator (reporter)
@@ -242,6 +264,13 @@ class CompetencyRatingViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         """Create rating and recalculate overall evaluation"""
+        # Validate: User can only create ratings for their own reviews
+        appraisal_review = serializer.validated_data['appraisal_review']
+
+        if appraisal_review.reviewer != self.request.user and not self.request.user.is_staff:
+            from rest_framework.exceptions import PermissionDenied
+            raise PermissionDenied('You can only create ratings for your own reviews.')
+
         rating = serializer.save()
 
         # Recalculate overall evaluation

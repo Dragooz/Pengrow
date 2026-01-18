@@ -1,0 +1,149 @@
+.appraisal-detail-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+.appraisal-detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 30px;
+}
+
+.appraisal-detail-header h1 {
+  margin: 0 0 5px 0;
+  color: #333;
+  font-size: 28px;
+}
+
+.subtitle {
+  margin: 0;
+  color: #666;
+  font-size: 14px;
+}
+
+.appraisal-content {
+  background: white;
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.rating-section {
+  margin-bottom: 40px;
+  padding-bottom: 30px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.rating-section:last-of-type {
+  border-bottom: none;
+}
+
+.rating-section h2 {
+  margin: 0 0 20px 0;
+  color: #667eea;
+  font-size: 20px;
+}
+
+.criterion-item {
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+}
+
+.criterion-item h4 {
+  margin: 0 0 15px 0;
+  color: #333;
+  font-size: 16px;
+}
+
+.rating-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.rating-option {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: white;
+  transition: all 0.3s;
+}
+
+.rating-option:hover {
+  border-color: #667eea;
+  background-color: #f0f2ff;
+}
+
+.rating-option input[type='radio'] {
+  cursor: pointer;
+}
+
+.rating-option input[type='radio']:checked + span {
+  font-weight: 600;
+  color: #667eea;
+}
+
+.comments-textarea {
+  width: 100%;
+  min-height: 80px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+  font-family: inherit;
+  resize: vertical;
+}
+
+.comments-textarea:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.actions-section {
+  margin: 30px 0;
+  text-align: right;
+}
+
+.signature-section {
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 2px solid #f0f0f0;
+}
+
+.signature-section h2 {
+  margin: 0 0 20px 0;
+  color: #667eea;
+  font-size: 20px;
+}
+
+.overall-section {
+  margin-top: 40px;
+  padding: 20px;
+  background-color: #f0f2ff;
+  border-radius: 5px;
+}
+
+.overall-section h2 {
+  margin: 0 0 15px 0;
+  color: #667eea;
+  font-size: 20px;
+}
+
+.overall-section p {
+  margin: 10px 0;
+  font-size: 14px;
+  color: #333;
+}
+
+.overall-section strong {
+  color: #667eea;
+}
